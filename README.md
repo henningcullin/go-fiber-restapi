@@ -36,7 +36,7 @@ Inside the project folder run this to install fiber
 go get -u github.com/gofiber/fiber/v3
 ```
 
-### 1.5 main.go
+### 1.5 Fiber Hello World
 
 ```GO
 package main
@@ -54,4 +54,46 @@ func main() {
 
 	app.Listen(":3000")
 }
+```
+
+## 2 Examples
+
+### 2.1 Modules
+
+If you want to modulate your code into seperate files, GO allows you to do this
+
+Lets say you want to add a module called users to your project that looks like this:
+```
+/your-module-name
+├── go.mod
+├── src
+│   └── main.go
+```
+
+Then you would need to do this:
+```
+/your-module-name
+├── go.mod
+├── src
+│   ├── main.go
+│	└── users
+│		└── users.go
+```
+
+Inside your main.go you add this in your import:
+
+```GO
+"<your-module-name>/src/users"
+```
+
+Inside your users.go you make sure you write this at the top:
+
+```GO
+package users
+```
+
+Then inside your main you would access them like a method
+
+```GO
+app.Get("/user", user.Details)
 ```
